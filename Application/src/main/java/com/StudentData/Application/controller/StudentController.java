@@ -1,22 +1,18 @@
 package com.StudentData.Application.controller;
 
-import com.StudentData.Application.entity.Courses;
-import com.StudentData.Application.entity.Student;
 import com.StudentData.Application.repository.CoursesRepository;
 import com.StudentData.Application.service.EnrolledCoursesService;
 import com.StudentData.Application.service.StudentService;
-import com.StudentData.Application.util.StudentUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import vo.EnrolledCoursesVO;
 import vo.StudentVO;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/student")
+@RequestMapping("/api/student")
 public class StudentController {
 
 
@@ -32,13 +28,13 @@ public class StudentController {
     private static final Logger LOG = LoggerFactory.getLogger(StudentController.class);
 
 
-    @PostMapping(value = "/students/create")
-    public StudentVO createStudent(StudentVO studentVO) {
+    @PostMapping(value = "/create")
+    public StudentVO createStudent(@RequestBody StudentVO studentVO) {
         LOG.info("createStudent: Creating the new joined student information");
         return  studentService.createStudent(studentVO);
     }
 
-    @PutMapping(value = "/students/update")
+    @PutMapping(value = "/update")
     public StudentVO updateStudent(@RequestBody StudentVO studentVO) {
         LOG.info("updateStudent: Updating the existing student information");
         return studentService.updateStudent(studentVO);
@@ -49,7 +45,7 @@ public class StudentController {
         studentService.deleteByStudentId(studentId);
     }
 
-    @GetMapping(value = "/student/{studentId}/get")
+    @GetMapping(value = "/{studentId}/get")
     public StudentVO getByStudentId(@PathVariable("studentId") Integer studentId) {
         LOG.info("getByStudentId: fetching a Student information for a specific student by given student Id: {}",studentId);
         return studentService.getByStudentId(studentId);
@@ -61,7 +57,7 @@ public class StudentController {
         return studentService.getByFirstName(firstName);
     }
 
-    @GetMapping(value = "/students/findAll")
+    @GetMapping(value = "/findAll")
     public List<StudentVO> getStudents() {
         return studentService.getStudentsList();
     }

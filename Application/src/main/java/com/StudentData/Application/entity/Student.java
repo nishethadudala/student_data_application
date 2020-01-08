@@ -39,6 +39,17 @@ public class Student implements Serializable {
     @OneToMany(mappedBy = "student")
     private List<EnrolledCourses> enrolledCoursesList;
 
+    @OneToMany(mappedBy = "student")
+    private List<Results> resultsList;
+
+    public List<Results> getResultsList() {
+        return resultsList;
+    }
+
+    public void setResultsList(List<Results> resultsList) {
+        this.resultsList = resultsList;
+    }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

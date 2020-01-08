@@ -1,8 +1,5 @@
 package vo;
 
-import com.StudentData.Application.entity.Courses;
-import com.StudentData.Application.entity.Student;
-
 public class CoursesVO {
 
     private int courseId;

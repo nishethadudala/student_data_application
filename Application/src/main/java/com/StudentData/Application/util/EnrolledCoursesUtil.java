@@ -15,11 +15,12 @@ public class EnrolledCoursesUtil {
         return enrolledCoursesVO;
     }
 
-    public static EnrolledCourses populateEnrolledCoursesObj(EnrolledCoursesVO enrolledCoursesVO, Student student){
+    public static EnrolledCourses populateEnrolledCoursesObj(EnrolledCoursesVO enrolledCoursesVO){
         EnrolledCourses enrolledCourses = new EnrolledCourses();
         enrolledCourses.setStudentCourseEnrollmentId(enrolledCoursesVO.getStudentCourseEnrollmentId());
         enrolledCourses.setCourseId(enrolledCoursesVO.getCourseId());
         enrolledCourses.setEnrolledDate(enrolledCoursesVO.getEnrolledDate());
+        Student student = new Student();
         enrolledCourses.setStudent(student);
         return enrolledCourses;
     }

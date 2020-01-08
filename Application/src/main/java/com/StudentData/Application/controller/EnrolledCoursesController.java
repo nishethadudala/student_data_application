@@ -11,7 +11,7 @@ import vo.EnrolledCoursesVO;
 import java.util.List;
 
 @RestController
-@RequestMapping("/courses")
+@RequestMapping("/api")
 public class EnrolledCoursesController {
 
 
@@ -21,20 +21,20 @@ public class EnrolledCoursesController {
     private EnrolledCoursesService enrolledCoursesService;
 
     @PostMapping(value="/create")
-    public EnrolledCoursesVO createEnrolledCourses(EnrolledCoursesVO enrolledCoursesVO, Student student){
+    public EnrolledCoursesVO createEnrolledCourses(@RequestBody EnrolledCoursesVO enrolledCoursesVO){
         LOG.info("createEnrolledCourses: creating a new enrollment courses for new student");
-        return enrolledCoursesService.createEnrolledCourses(enrolledCoursesVO, student);
+        return enrolledCoursesService.createEnrolledCourses(enrolledCoursesVO);
     }
 
     @PutMapping(value="/update")
-    public EnrolledCoursesVO updateEnrolledCourses(EnrolledCoursesVO enrolledCoursesVO, Student student){
+    public EnrolledCoursesVO updateEnrolledCourses(@RequestBody EnrolledCoursesVO enrolledCoursesVO){
         LOG.info("updateEnrolledCourses: updating a enrollment courses for existing student");
-        return enrolledCoursesService.updateEnrolledCourses(enrolledCoursesVO, student);
+        return enrolledCoursesService.updateEnrolledCourses(enrolledCoursesVO);
     }
 
     @GetMapping(value="/getEnrolledCourses/{student_id}")
     public List<EnrolledCoursesVO> getEnrolledCourseByStudentId(@PathVariable("studentId") int studentId){
-        LOG.info("getEnrolledCourseByStudentId: fetching a enrollment courses  List for a specific student by given student Id: {}");
+        LOG.info("getEnrolledCourseByStudentId: fetching a enrollment courses  List for a specific student by given student Id: {}",studentId);
         return enrolledCoursesService.getByStudentId(studentId);
     }
 

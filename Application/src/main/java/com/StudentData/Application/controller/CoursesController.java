@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import vo.CoursesVO;
 
 @RestController
-@RequestMapping("/Courses")
+@RequestMapping("/api/course")
 public class CoursesController {
 
     private static final Logger LOG = LoggerFactory.getLogger(CoursesController.class);
@@ -19,20 +19,14 @@ public class CoursesController {
     private CoursesService coursesService;
 
     @PostMapping(value="/create")
-    public CoursesVO createCourses(CoursesVO coursesVO){
+    public CoursesVO createCourses(@RequestBody  CoursesVO coursesVO){
         LOG.info("createCourses: Creating the new Course in the curriculum for students");
         return coursesService.createCourses(coursesVO);
     }
 
     @PutMapping(value="/update")
-    public CoursesVO updateCourses(CoursesVO coursesVO){
+    public CoursesVO updateCourses(@RequestBody CoursesVO coursesVO){
         LOG.info("updateCourses: Updating the changes to a existing Course");
         return coursesService.updateCourses(coursesVO);
     }
-
-//    @GetMapping(value="/get/{academic_id}")
-//    public CoursesVO getByStudentId(@PathVariable("studentId")int studentId){
-//        return coursesService.getByStudentId(studentId);
-//    }
-
 }

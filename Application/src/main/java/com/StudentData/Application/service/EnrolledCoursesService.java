@@ -19,16 +19,16 @@ public class EnrolledCoursesService {
     private static final Logger LOG = LoggerFactory.getLogger(EnrolledCoursesService.class);
 
     @Autowired
-    private EnrolledCoursesRepository academicsRepository;
+    private EnrolledCoursesRepository enrolledCoursesRepository;
 
-    public EnrolledCoursesVO createEnrolledCourses(EnrolledCoursesVO enrolledCoursesVO, Student student) {
+    public EnrolledCoursesVO createEnrolledCourses(EnrolledCoursesVO enrolledCoursesVO) {
         LOG.info("createEnrolledCourses: creating a new enrollment courses for new student");
-        return EnrolledCoursesUtil.populateEnrolledCoursesVO(academicsRepository.save(EnrolledCoursesUtil.populateEnrolledCoursesObj(enrolledCoursesVO, student)));
+        return EnrolledCoursesUtil.populateEnrolledCoursesVO(enrolledCoursesRepository.save(EnrolledCoursesUtil.populateEnrolledCoursesObj(enrolledCoursesVO)));
     }
 
-    public EnrolledCoursesVO updateEnrolledCourses(EnrolledCoursesVO enrolledCoursesVO, Student student) {
+    public EnrolledCoursesVO updateEnrolledCourses(EnrolledCoursesVO enrolledCoursesVO) {
         LOG.info("updateEnrolledCourses: updating a enrollment courses for existing student");
-        return EnrolledCoursesUtil.populateEnrolledCoursesVO(academicsRepository.save(EnrolledCoursesUtil.populateEnrolledCoursesObj(enrolledCoursesVO, student)));
+        return EnrolledCoursesUtil.populateEnrolledCoursesVO(enrolledCoursesRepository.save(EnrolledCoursesUtil.populateEnrolledCoursesObj(enrolledCoursesVO)));
     }
 
     public List<EnrolledCoursesVO> getByStudentId(int studentId) {

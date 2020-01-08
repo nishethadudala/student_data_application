@@ -32,7 +32,9 @@ public class StudentService {
 
 
     public StudentVO createStudent(StudentVO studentVO) {
-        Student student = studentRepository.save(StudentUtil.populateStudentObject(studentVO));
+
+        return StudentUtil.populateStudentVO(studentRepository.save(StudentUtil.populateStudentObject(studentVO)));
+        /*Student student = studentRepository.save(StudentUtil.populateStudentObject(studentVO));
         List<Integer> coursesList = studentVO.getCoursesList();
         if(!coursesList.isEmpty() && coursesList.size() > 0) {
             for(Integer courseId : coursesList) {
@@ -44,7 +46,7 @@ public class StudentService {
         }
         StudentVO studentVO1 = StudentUtil.populateStudentVO(student);
         studentVO1.setCoursesList(studentVO.getCoursesList());
-        return studentVO1;
+        return studentVO1;*/
     }
 
     public StudentVO updateStudent(StudentVO studentVO) {
